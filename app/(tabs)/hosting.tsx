@@ -1,11 +1,12 @@
+import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import React, { useEffect } from 'react';
 import {
-    FlatList,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View
+  FlatList,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
@@ -19,7 +20,7 @@ export default function HostingScreen() {
   const { events, hostingEvents } = useSelector((state: RootState) => state.events);
   const { user } = useSelector((state: RootState) => state.auth);
 
-  // Load data when screen mounts
+ 
   useEffect(() => {
     console.log('Hosting screen mounted, loading data...');
     dispatch(fetchEvents());
@@ -45,11 +46,17 @@ export default function HostingScreen() {
       <SafeAreaView style={styles.container}>
         <View style={styles.header}>
           <Text style={styles.title}>Hosting</Text>
-        </View>
-        <View style={styles.emptyContainer}>
-          <Text style={styles.message}>You haven't hosted any events yet</Text>
           <TouchableOpacity 
             style={styles.createButton}
+            onPress={() => router.push('/create')}
+          >
+            <Ionicons name="add-circle-outline" size={24} color="#007AFF" />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.emptyContainer}>
+          <Text style={styles.message}>You haven&apos;t hosted any events yet</Text>
+          <TouchableOpacity 
+            style={styles.createButtonLarge}
             onPress={() => router.push('/create')}
           >
             <Text style={styles.createButtonText}>Create Event</Text>
@@ -63,6 +70,12 @@ export default function HostingScreen() {
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>Hosting</Text>
+        <TouchableOpacity 
+          style={styles.createButton}
+          onPress={() => router.push('/create')}
+        >
+          <Ionicons name="add-circle-outline" size={24} color="#007AFF" />
+        </TouchableOpacity>
       </View>
       <FlatList
         data={hostedEvents}
@@ -85,6 +98,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     padding: 16,
     borderBottomWidth: 1,
     borderBottomColor: '#eee',
@@ -92,6 +108,15 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: 'bold',
+  },
+  createButton: {
+    padding: 8,
+  },
+  createButtonLarge: {
+    backgroundColor: '#007AFF',
+    paddingHorizontal: 24,
+    paddingVertical: 12,
+    borderRadius: 8,
   },
   emptyContainer: {
     flex: 1,
@@ -104,12 +129,6 @@ const styles = StyleSheet.create({
     color: '#666',
     textAlign: 'center',
     marginBottom: 16,
-  },
-  createButton: {
-    backgroundColor: '#007AFF',
-    paddingHorizontal: 24,
-    paddingVertical: 12,
-    borderRadius: 8,
   },
   createButtonText: {
     color: '#fff',

@@ -22,9 +22,9 @@ export default function HomeScreen() {
   const { events } = useSelector((state: RootState) => state.events);
   const { user } = useSelector((state: RootState) => state.auth);
   const [searchQuery, setSearchQuery] = useState('');
-  const [distanceRange, setDistanceRange] = useState(2); // Default 2km
+  const [distanceRange, setDistanceRange] = useState(2); 
 
-  // Load data when screen mounts
+
   useEffect(() => {
     console.log('Home screen mounted, loading data...');
     dispatch(fetchEvents()).then((events) => {
@@ -35,7 +35,7 @@ export default function HomeScreen() {
     });
   }, [dispatch]);
 
-  // Filter events based on search query and distance
+ 
   const filteredEvents = events
     .filter(event => {
       const matchesSearch = 
@@ -49,7 +49,6 @@ export default function HomeScreen() {
       return matchesSearch && withinDistance;
     })
     .sort((a, b) => {
-      // Sort by distance (nearest first)
       if (a.distance && b.distance) {
         return a.distance - b.distance;
       }

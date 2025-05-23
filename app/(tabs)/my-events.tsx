@@ -2,12 +2,12 @@ import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import {
-    ActivityIndicator,
-    FlatList,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  ActivityIndicator,
+  FlatList,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
@@ -28,7 +28,6 @@ export default function MyEventsScreen() {
       try {
         await dispatch(fetchEvents());
         if (user && events) {
-          // Filter events where user has RSVP'd
           const attendingEvents = events.filter(event => 
             event.rsvpRequests?.some(request => 
               request.userId === user.id && request.status === 'accepted'
@@ -47,7 +46,7 @@ export default function MyEventsScreen() {
   }, [dispatch, user]);
 
   const renderEventItem = ({ item }: { item: Event }) => {
-    console.log('Rendering event:', item); // Debug log
+    console.log('Rendering event:', item);
     return (
       <TouchableOpacity
         style={styles.eventCard}

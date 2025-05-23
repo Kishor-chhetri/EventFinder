@@ -2,14 +2,14 @@ import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import {
-    Alert,
-    ScrollView,
-    StyleSheet,
-    Switch,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
+  Alert,
+  ScrollView,
+  StyleSheet,
+  Switch,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
@@ -48,7 +48,6 @@ export default function CreateEventScreen() {
     if (!date.trim()) {
       newErrors.date = 'Date is required';
     } else {
-      // Validate date format (YYYY-MM-DD)
       const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
       if (!dateRegex.test(date)) {
         newErrors.date = 'Date must be in YYYY-MM-DD format';
@@ -64,7 +63,6 @@ export default function CreateEventScreen() {
     if (!time.trim()) {
       newErrors.time = 'Time is required';
     } else {
-      // Validate time format (HH:MM AM/PM)
       const timeRegex = /^(0?[1-9]|1[0-2]):[0-5][0-9] (AM|PM)$/;
       if (!timeRegex.test(time)) {
         newErrors.time = 'Time must be in HH:MM AM/PM format';
@@ -137,7 +135,7 @@ export default function CreateEventScreen() {
       console.log('Event created successfully');
       
       Alert.alert('Success', 'Event created successfully!');
-      router.back(); // Close the form and go back
+      router.back(); 
     } catch (error) {
       console.error('Error creating event:', error);
       Alert.alert('Error', 'Failed to create event. Please try again.');

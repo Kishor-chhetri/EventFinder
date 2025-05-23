@@ -2,14 +2,14 @@ import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import React, { useEffect, useMemo, useState } from 'react';
 import {
-    ActivityIndicator,
-    FlatList,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View
+  ActivityIndicator,
+  FlatList,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
@@ -25,7 +25,7 @@ export default function ExploreScreen() {
   const { events, isLoading, error } = useSelector((state: RootState) => state.events as EventsState);
   const { user } = useSelector((state: RootState) => state.auth);
   
-  // Search and filter states
+
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
@@ -64,7 +64,7 @@ export default function ExploreScreen() {
     if (events) {
       let filtered = [...events];
 
-      // Apply search query filter
+    
       if (searchQuery) {
         filtered = filtered.filter(event =>
           event.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -73,28 +73,27 @@ export default function ExploreScreen() {
         );
       }
 
-      // Apply category filter
+   
       if (selectedCategory && selectedCategory !== 'All') {
         filtered = filtered.filter(event =>
           event.category === selectedCategory
         );
       }
 
-      // Apply type filter
       if (selectedType && selectedType !== 'All') {
         filtered = filtered.filter(event =>
           event.type.toLowerCase() === selectedType.toLowerCase()
         );
       }
 
-      // Apply date filter
+    
       if (selectedDate) {
         filtered = filtered.filter(event =>
           event.date === selectedDate
         );
       }
 
-      // Apply sorting
+     
       filtered.sort((a, b) => {
         switch (sortBy) {
           case 'popular':

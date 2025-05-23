@@ -2,12 +2,12 @@ import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import {
-    ScrollView,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch } from 'react-redux';
@@ -28,7 +28,7 @@ export default function SearchScreen() {
   const handleSearch = () => {
     let filteredEvents = [...mockEvents];
 
-    // Apply search query filter
+    
     if (searchQuery) {
       filteredEvents = filteredEvents.filter(event =>
         event.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -37,21 +37,20 @@ export default function SearchScreen() {
       );
     }
 
-    // Apply category filter
+
     if (selectedCategory && selectedCategory !== 'All') {
       filteredEvents = filteredEvents.filter(event =>
         event.category === selectedCategory
       );
     }
 
-    // Apply type filter
     if (selectedType && selectedType !== 'All') {
       filteredEvents = filteredEvents.filter(event =>
         event.type.toLowerCase() === selectedType.toLowerCase()
       );
     }
 
-    // Apply date filter
+    
     if (selectedDate) {
       filteredEvents = filteredEvents.filter(event =>
         event.date === selectedDate
@@ -149,7 +148,6 @@ export default function SearchScreen() {
           <TouchableOpacity
             style={styles.dateInput}
             onPress={() => {
-              // TODO: Implement date picker
               setSelectedDate('2024-04-15');
             }}
           >

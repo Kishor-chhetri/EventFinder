@@ -92,11 +92,10 @@ const authSlice = createSlice({
   },
 });
 
-// Thunk actions
 export const signup = (email: string, password: string, name: string) => async (dispatch: any) => {
   dispatch(signupStart());
   try {
-    // Check if user already exists
+    
     const existingUsersJson = await AsyncStorage.getItem('users');
     const existingUsers = existingUsersJson ? JSON.parse(existingUsersJson) : [];
 
@@ -105,12 +104,12 @@ export const signup = (email: string, password: string, name: string) => async (
       return;
     }
 
-    // Create new user
+    
     const newUser = {
       id: Date.now().toString(),
       email,
       name,
-      password, // In production, hash the password
+      password, 
       createdEvents: [],
       attendingEvents: [],
       savedEvents: [],
